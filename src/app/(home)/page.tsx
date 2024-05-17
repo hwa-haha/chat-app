@@ -3,14 +3,33 @@ import SideBar from '@/components/SideBar'
 import Image from "next/image";
 import { IoChatbubblesOutline } from 'react-icons/io5'
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../tyeps/firebase';
+import { auth, db } from '../tyeps/firebase';
 import { CgSpinner } from 'react-icons/cg';
 import Login from '@/components/Login';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { useEffect } from 'react';
+import { getDisplayName } from 'next/dist/shared/lib/utils';
 
 
 export default function Home() {
 
     const [user, loading] = useAuthState(auth);
+    
+    useEffect(() => {
+    
+        if(user){
+         setDoc(doc(db, "users",user.uid),
+            {
+                email: user.email,
+                lastActive: serverTimestamp(),
+                photoURL: user.photoURL,
+                displayName: user.displayName
+            },
+            {merge: true}
+        )
+      }
+    }, [user])
+    
 
      if(loading){
         return(
