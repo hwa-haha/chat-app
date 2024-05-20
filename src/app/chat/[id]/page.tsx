@@ -16,13 +16,13 @@ import { IoChatbubblesOutline } from "react-icons/io5";
 
 const Chat = () => {
 
-    const [user] = useAuthState(auth);
     const { id } = useParams();
+    const [user] = useAuthState(auth);
 
     const bottomOfChat = useRef<null | HTMLDivElement>(null);
 
     const q = query(
-        collection(db, "chats", id, "messages"),
+        collection(db, 'chats', id, 'messages'),
         orderBy("timestamp")
     );
     const [messages, loading] = useCollectionData(q);
@@ -47,7 +47,7 @@ const Chat = () => {
                     <SideBar selectedChatId={id} />
                 </div>
                 <div className="flex flex-col w-full col-span-6 ">
-                   
+                    <Topbar user={getOtherUser(chat?.usersData, user as User)} />
 
                     <div className="flex w-full h-full max-h-screen px-6 pt-4 mb-2 overflow-y-scroll no-scrollbar">
                         <div className="flex flex-col w-full h-full">
@@ -56,8 +56,31 @@ const Chat = () => {
                                     <CgSpinner className="w-12 h-12 text-gray-400 animate-spin" />
                                 </div>
                             )}
+
+                            {!loading && messages?.length === 0 && (
+                                <div className="flex flex-col items-center justify-center flex-1">
+                                    <IoChatbubblesOutline className="w-24 h-24 text-gray-300" />
+                                    <p className="text-2xl font-medium tracking-tight text-gray-300">
+                                        Start the conversation
+                                    </p>
+                                </div>
+                            )}
+
+                            {messages?.map((msg, index) => (
+                                <MessageBubble
+                                    user={user!}
+                                    photoURL={msg.photoURL}
+                                    message={msg as IMessage}
+                                    key={index}
+                                    numberOfMessages={messages?.length}
+                                    currentMessageIndex={index}
+                                />
+                            ))}
+                            <div ref={bottomOfChat} className="py-8"></div>
                         </div>
                     </div>
+
+                    <BottomBar user={user as User} chatId={id} />
                 </div>
             </div>
         </>

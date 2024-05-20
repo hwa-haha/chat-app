@@ -10,7 +10,7 @@ import { IChat } from "@/app/tyeps";
 interface IUserListItemProps {
     sender: User;
     receiver: User;
-    selectedChatId?: string;
+    selectedChatId: string;
     chats: IChat[];
 }
 
