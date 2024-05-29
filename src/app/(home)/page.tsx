@@ -3,7 +3,7 @@ import SideBar from '@/components/SideBar'
 import Image from "next/image";
 import { IoChatbubblesOutline } from 'react-icons/io5'
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from '../tyeps/firebase';
+import { auth, db } from '../firebase';
 import { CgSpinner } from 'react-icons/cg';
 import Login from '@/components/Login';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';

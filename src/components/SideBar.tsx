@@ -7,12 +7,12 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { CgSpinner } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
-import { auth, db } from "@/app/tyeps/firebase";
+import { auth, db } from "@/app/firebase";
 import { IChat } from "@/app/tyeps";
 import UserListItem from "./UserListLtem";
 
 interface ISideBarProps {
-  selectedChatId?: string;
+  selectedChatId: string;
 }
 
 export default function SideBar({ selectedChatId }: ISideBarProps) {

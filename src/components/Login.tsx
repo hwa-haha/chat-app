@@ -1,6 +1,6 @@
 'use client'
 
-import { auth } from '@/app/tyeps/firebase';
+import { auth } from '@/app/firebase';
 import React, { FormEvent, useState } from 'react'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 

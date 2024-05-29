@@ -3,7 +3,7 @@ import BottomBar from "@/components/BottomBar";
 import MessageBubble from "@/components/MessageBubble";
 import SideBar from "@/components/SideBar";
 import Topbar from "@/components/TopBar";
-import { auth, db } from "@/app/tyeps/firebase";
+import { auth, db } from "@/app/firebase";
 import { IMessage } from "@/app/tyeps";
 import { User } from "firebase/auth";
 import { query, orderBy, collection, doc } from "firebase/firestore";
@@ -15,9 +15,9 @@ import { CgSpinner } from "react-icons/cg";
 import { IoChatbubblesOutline } from "react-icons/io5";
 
 const Chat = () => {
-
-    const { id } = useParams();
+    
     const [user] = useAuthState(auth);
+    const { id } = useParams();
 
     const bottomOfChat = useRef<null | HTMLDivElement>(null);
 

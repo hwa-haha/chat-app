@@ -1,10 +1,10 @@
 "use client"
 import { useRouter } from "next/navigation";
-//import Moment from "moment";
+import Moment from "moment";
 import { User } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import Image from "next/image";
-import { db } from "@/app/tyeps/firebase";
+import { db } from "@/app/firebase";
 import { IChat } from "@/app/tyeps";
 
 interface IUserListItemProps {

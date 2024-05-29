@@ -2,7 +2,7 @@
 import { FormEvent, useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { IoPaperPlaneOutline } from "react-icons/io5";
-import { db } from "@/app/tyeps/firebase";
+import { db } from "@/app/firebase";
 import { User } from "firebase/auth";
 
 interface IBottomBarProps {
